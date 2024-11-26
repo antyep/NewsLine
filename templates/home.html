@@ -1,6 +1,10 @@
 {% extends "base.html" %} {% block content %} {% if user.is_authenticated %} Hi
-{{ user.username }}!
-<p><a href="{% url 'logout' %}">Log Out</a></p>
+{{ user.username }}! Your age is {{ user.age }}.
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <p>Are you sure you want to Log Out?</p>
+  <input type="submit" value="Logout" />
+</form>
 {% else %}
 
 <p>You are not logged in.</p>
